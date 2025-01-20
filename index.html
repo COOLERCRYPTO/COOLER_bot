@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>CoolerGame Mini App</title>
     <style>
         body {
@@ -13,6 +13,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            touch-action: manipulation; /* Предотвращает увеличение масштаба */
         }
         .container {
             text-align: center;
@@ -29,6 +30,10 @@
         .computer-image {
             cursor: pointer;
             margin: 20px 0;
+            -webkit-user-select: none; /* Предотвращает выделение текста на мобильных устройствах */
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         .balance {
             font-size: 20px;
@@ -42,14 +47,16 @@
         <img src="https://via.placeholder.com/200" alt="Computer" class="computer-image" id="computerImage">
         <p class="balance">Balance: <span id="balance">0</span> COOLER</p>
         <script>
-            let balance = 0;
+            let balance = localStorage.getItem('balance') ? parseInt(localStorage.getItem('balance')) : 0;
 
             function updateBalance() {
                 balance += 1;
                 document.getElementById('balance').innerText = balance;
+                localStorage.setItem('balance', balance);
             }
 
-            document.getElementById('computerImage').addEventListener('click', function() {
+            document.getElementById('computerImage').addEventListener('click', function(event) {
+                event.preventDefault(); // Предотвращает другие действия по умолчанию
                 updateBalance();
             });
         </script>
