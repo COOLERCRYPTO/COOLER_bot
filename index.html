@@ -7,8 +7,11 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #282c34; /* Синий темный фон */
+            background-image: url('https://via.placeholder.com/1920x1080'); /* URL изображения фона */
+            background-size: cover; /* Размер фона подстраивается под размер экрана */
+            background-position: center; /* Центрирование фона */
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -18,21 +21,17 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
-        }
-        .container {
+            color: white; /* Цвет текста для контраста с фоном */
             text-align: center;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-            max-width: 400px;
-            width: 100%;
         }
         h1 {
-            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
         }
         .computer-image {
             cursor: pointer;
+            width: 200px;
+            height: 200px;
             margin: 20px 0;
             -webkit-user-drag: none; /* Предотвращает перетаскивание изображения */
             -khtml-user-drag: none;
@@ -41,35 +40,32 @@
             user-drag: none;
         }
         .balance {
-            font-size: 20px;
-            color: #333;
+            font-size: 1.5em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Your Computer</h1>
-        <img src="https://via.placeholder.com/200" alt="Computer" class="computer-image" id="computerImage">
-        <p class="balance">Balance: <span id="balance">0</span> COOLER</p>
-        <script>
-            let balance = localStorage.getItem('balance') ? parseInt(localStorage.getItem('balance')) : 0;
+    <h1>Your Computer</h1>
+    <img src="https://via.placeholder.com/200" alt="Computer" class="computer-image" id="computerImage">
+    <p class="balance">Balance: <span id="balance">0</span> COOLER</p>
+    <script>
+        let balance = localStorage.getItem('balance') ? parseInt(localStorage.getItem('balance')) : 0;
 
-            function updateBalance() {
-                balance += 1;
-                document.getElementById('balance').innerText = balance;
-                localStorage.setItem('balance', balance);
-            }
+        function updateBalance() {
+            balance += 1;
+            document.getElementById('balance').innerText = balance;
+            localStorage.setItem('balance', balance);
+        }
 
-            document.getElementById('computerImage').addEventListener('click', function(event) {
-                event.preventDefault(); // Предотвращает другие действия по умолчанию
-                updateBalance();
-            });
+        document.getElementById('computerImage').addEventListener('click', function(event) {
+            event.preventDefault(); // Предотвращает другие действия по умолчанию
+            updateBalance();
+        });
 
-            // Дополнительно: Предотвращаем контекстное меню (долгий тап)
-            document.addEventListener('contextmenu', function(event) {
-                event.preventDefault();
-            });
-        </script>
-    </div>
+        // Дополнительно: Предотвращаем контекстное меню (долгий тап)
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+    </script>
 </body>
 </html>
