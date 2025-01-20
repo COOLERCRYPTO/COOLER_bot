@@ -14,6 +14,10 @@
             height: 100vh;
             margin: 0;
             touch-action: manipulation; /* Предотвращает увеличение масштаба */
+            -webkit-user-select: none; /* Предотвращает выделение текста на мобильных устройствах */
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
         .container {
             text-align: center;
@@ -30,10 +34,11 @@
         .computer-image {
             cursor: pointer;
             margin: 20px 0;
-            -webkit-user-select: none; /* Предотвращает выделение текста на мобильных устройствах */
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
+            -webkit-user-drag: none; /* Предотвращает перетаскивание изображения */
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
         }
         .balance {
             font-size: 20px;
@@ -58,6 +63,11 @@
             document.getElementById('computerImage').addEventListener('click', function(event) {
                 event.preventDefault(); // Предотвращает другие действия по умолчанию
                 updateBalance();
+            });
+
+            // Дополнительно: Предотвращаем контекстное меню (долгий тап)
+            document.addEventListener('contextmenu', function(event) {
+                event.preventDefault();
             });
         </script>
     </div>
