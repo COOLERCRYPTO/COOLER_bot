@@ -4,7 +4,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandle
 # Function to handle the /start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     keyboard = [
-        [InlineKeyboardButton("Start Game", web_app=WebAppInfo(url="https://your-web-app-url.com"))]
+        [InlineKeyboardButton("Start Game", web_app=WebAppInfo(url="https://coolercrypto.github.io/COOLER_bot/"))]
     ]
     reply_markup = InlineKeyboardMarkup(keyboard)
     await update.message.reply_text('Hello! Welcome to CoolerGame. Press the button below to start the game.', reply_markup=reply_markup)
