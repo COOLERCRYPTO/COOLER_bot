@@ -1,0 +1,36 @@
+from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
+from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
+
+# Function to handle the /start command
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    keyboard = [
+        [InlineKeyboardButton("Start Game", web_app=WebAppInfo(url="https://your-web-app-url.com"))]
+    ]
+    reply_markup = InlineKeyboardMarkup(keyboard)
+    await update.message.reply_text('Hello! Welcome to CoolerGame. Press the button below to start the game.', reply_markup=reply_markup)
+
+# Function to handle button presses
+async def button(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    query = update.callback_query
+    await query.answer()
+    if query.data == 'game_start':
+        await query.edit_message_text(text="The game has started! Go ahead!")
+        # Here you can add logic for starting the mini-application
+        await start_game(query.message.chat_id, context)
+
+# Function to start the mini-application
+async def start_game(chat_id, context: ContextTypes.DEFAULT_TYPE):
+    # Logic for starting the mini-application
+    # For example, sending a message with instructions or a link to the mini-application
+    await context.bot.send_message(chat_id=chat_id, text="Your computer is ready to farm COOLER!")
+
+def main() -> None:
+    application = ApplicationBuilder().token("7476711537:AAHM1Kqv89wYNm-KiSsmYdhQy5_sK08MDm4").build()
+
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(CallbackQueryHandler(button))
+
+    application.run_polling()
+
+if __name__ == '__main__':
+    main()

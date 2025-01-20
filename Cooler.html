@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CoolerGame Mini App</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .computer { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+        .upgrade-button { display: block; width: 100%; padding: 10px; background-color: #4CAF50; color: white; text-align: center; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Computer</h1>
+        <div class="computer">
+            <p>Level: 1</p>
+            <p>Farming Speed: 10 COOLER/min</p>
+            <button class="upgrade-button" onclick="upgradeComputer()">Upgrade Computer</button>
+        </div>
+        <script>
+            function upgradeComputer() {
+                alert('Computer upgraded!');
+                // Here you can add logic for updating the level and farming speed
+            }
+        </script>
+    </div>
+</body>
+</html>
