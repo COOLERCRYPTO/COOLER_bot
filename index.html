@@ -15,94 +15,43 @@
             margin: 0;
         }
         .container {
+            text-align: center;
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
             border-radius: 8px;
             max-width: 400px;
             width: 100%;
-            text-align: center;
         }
         h1 {
             color: #333;
         }
-        .computer {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-        }
-        .computer p {
-            margin: 5px 0;
-        }
-        .upgrade-button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            border: none;
-            border-radius: 8px;
+        .computer-image {
             cursor: pointer;
-            font-size: 16px;
+            margin: 20px 0;
         }
-        .upgrade-button:hover {
-            background-color: #45a049;
+        .balance {
+            font-size: 20px;
+            color: #333;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Your Computer</h1>
-        <div class="computer">
-            <p>Level: <span id="level">1</span></p>
-            <p>Farming Speed: <span id="speed">10 COOLER/min</span></p>
-            <p>COOLER Earned: <span id="earned">0</span></p>
-            <button class="upgrade-button" onclick="upgradeComputer()">Upgrade Computer</button>
-        </div>
+        <img src="https://via.placeholder.com/200" alt="Computer" class="computer-image" id="computerImage">
+        <p class="balance">Balance: <span id="balance">0</span> COOLER</p>
         <script>
-            let level = localStorage.getItem('level') ? parseInt(localStorage.getItem('level')) : 1;
-            let speed = localStorage.getItem('speed') ? parseInt(localStorage.getItem('speed')) : 10;
-            let earned = localStorage.getItem('earned') ? parseInt(localStorage.getItem('earned')) : 0;
-            let timer;
+            let balance = 0;
 
-            function saveState() {
-                localStorage.setItem('level', level);
-                localStorage.setItem('speed', speed);
-                localStorage.setItem('earned', earned);
+            function updateBalance() {
+                balance += 1;
+                document.getElementById('balance').innerText = balance;
             }
 
-            function startTimer() {
-                clearInterval(timer);
-                timer = setInterval(() => {
-                    earned += Math.floor(speed / 60);
-                    document.getElementById('earned').innerText = earned;
-                    saveState();
-                }, 1000);
-            }
-
-            function upgradeComputer() {
-                if (earned >= level * 10) {
-                    earned -= level * 10;
-                    level += 1;
-                    speed += 10;
-                    document.getElementById('level').innerText = level;
-                    document.getElementById('speed').innerText = speed + ' COOLER/min';
-                    document.getElementById('earned').innerText = earned;
-                    alert('Computer upgraded to level ' + level + '!');
-                    saveState();
-                } else {
-                    alert('Not enough COOLER to upgrade!');
-                }
-            }
-
-            document.getElementById('level').innerText = level;
-            document.getElementById('speed').innerText = speed + ' COOLER/min';
-            document.getElementById('earned').innerText = earned;
-
-            startTimer();
+            document.getElementById('computerImage').addEventListener('click', function() {
+                updateBalance();
+            });
         </script>
     </div>
 </body>
