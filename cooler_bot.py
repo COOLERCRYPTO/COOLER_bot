@@ -1,3 +1,4 @@
+import os
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler, ContextTypes
 
@@ -25,7 +26,7 @@ async def start_game(chat_id, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=chat_id, text="Your computer is ready to farm COOLER!")
 
 def main() -> None:
-    application = ApplicationBuilder().token("7476711537:AAHM1Kqv89wYNm-KiSsmYdhQy5_sK08MDm4").build()
+    application = ApplicationBuilder().token(os.getenv('7476711537:AAHM1Kqv89wYNm-KiSsmYdhQy5_sK08MDm4')).build()
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CallbackQueryHandler(button))
@@ -34,3 +35,11 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+
+
+
+
+   # https://coolercrypto.github.io/COOLER_bot/
+
+
+# 7476711537:AAHM1Kqv89wYNm-KiSsmYdhQy5_sK08MDm4
