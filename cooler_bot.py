@@ -26,7 +26,11 @@ async def start_game(chat_id, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=chat_id, text="Your computer is ready to farm COOLER!")
 
 def main() -> None:
-    application = ApplicationBuilder().token(os.getenv('7476711537:AAHM1Kqv89wYNm-KiSsmYdhQy5_sK08MDm4')).build()
+    token = os.getenv('TELEGRAM_BOT_TOKEN')
+    if not token:
+        raise ValueError("TELEGRAM_BOT_TOKEN environment variable is not set")
+    
+    application = ApplicationBuilder().token(token).build()
 
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CallbackQueryHandler(button))
@@ -35,8 +39,6 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
-
-
 
 
    # https://coolercrypto.github.io/COOLER_bot/
